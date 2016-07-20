@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdint.h>
 
-#pragma GCC optimize ("-ffp-contract=off")
+//#pragma GCC optimize ("-ffp-contract=off")
 
 union float64_union_t {
 	double d;
@@ -42,15 +42,17 @@ int main(int argc, char**argv)
 	float64_union_t t2;
 
 	t2.d = t0.d - t1.d;
-
 	cout << "diff: "   << hex << t2.d << dec << endl;
 	cout << "diff: 0x" << hex << t2.u << dec << endl;
 
 	float64_union_t dd;
 	dd.d = __builtin_fma(c.d, a.d, -t0.d);
-
 	cout << "diff: "   << hex << dd.d << dec << endl;
 	cout << "diff: 0x" << hex << dd.u << dec << endl;
+
+	t2.d = s.d * b.d - c.d * a.d;
+	cout << "diff: "   << hex << t2.d << dec << endl;
+	cout << "diff: 0x" << hex << t2.u << dec << endl;
 
 //	4 5 0   0x400cceca85a459fe      0x3f42818b574ceca1      0.000156835     1
 //	4 5 1   0x40062cd191c81ec0      0x3f3c7d8b20b823f2      0.000156835     1
