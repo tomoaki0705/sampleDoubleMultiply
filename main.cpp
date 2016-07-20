@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stdint.h>
 
+#pragma GCC optimize ("-ffp-contract=off")
+
 union float64_union_t {
 	double d;
 	uint64_t u;
